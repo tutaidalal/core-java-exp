@@ -29,8 +29,7 @@ public class QueueUsingLinkedList {
 	}
 
 	private void push(int value) {
-		SNode newNode = new SNode();
-		newNode.value = value;
+		SNode newNode = new SNode(value);
 		
 		if (base == null) {
 			base = top = newNode;
@@ -49,10 +48,10 @@ public class QueueUsingLinkedList {
 	}
 
 	private void printNodes() {
+		System.out.println("\n");
 		SNode curentNode = base;
-		System.out.println("-----------");
 		while (curentNode != null) {
-			System.out.println(curentNode.value);
+			System.out.print(curentNode);
 			curentNode = curentNode.next;
 		}
 	}

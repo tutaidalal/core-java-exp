@@ -17,15 +17,14 @@ public class StackUsingLinkedList {
 	}
 
 	private void push(int value) {
-		SNode newNode = new SNode();
+		SNode newNode = new SNode(value);
 		newNode.next = top;
-		newNode.value = value;
 		top = newNode;
 	}
 
 	private void pop() {
 		if (top == null) {
-			System.out.println("Stack is empty");
+			System.out.println("\nStack is empty");
 			return;
 		}
 		top = top.next;
@@ -33,9 +32,9 @@ public class StackUsingLinkedList {
 
 	private void printNodes() {
 		SNode curentNode = top;
-		System.out.println("-----------");
+		System.out.println("\n");
 		while (curentNode != null) {
-			System.out.println(curentNode.value);
+			System.out.print(curentNode);
 			curentNode = curentNode.next;
 		}
 	}
