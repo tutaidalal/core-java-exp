@@ -19,17 +19,17 @@ public class BNode {
 		return " SNode[" + value + ", L= " + leftVal + ", R= " + rightVal + "]";
 	}
 
-	public void printNode(int depth) {
+	public void printNode(int depth, String optional) {
 		String padding = new String();
 		for (int i = 0; i < depth; i++) {
 			padding = padding + "  ";
 		}
-		System.out.println(padding + value);
+		System.out.println(padding + optional + value);
 		if (left != null) {
-			left.printNode(depth + 1);
+			left.printNode(depth + 1, "L: ");
 		}
 		if (right != null) {
-			right.printNode(depth + 1);
+			right.printNode(depth + 1, "R: ");
 		}
 	}
 }

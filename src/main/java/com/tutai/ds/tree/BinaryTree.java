@@ -1,6 +1,5 @@
 package com.tutai.ds.tree;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -33,7 +32,7 @@ public class BinaryTree {
 //		root.left.right.left = new BNode(10);
 //		root.left.right.right = new BNode(11);
 
-		root.printNode(0);
+		root.printNode(0, "R:");
 
 		System.out.println("\nPre-Order: ");
 		printPreorder(root);
@@ -88,7 +87,6 @@ public class BinaryTree {
 				queue.add(currentNode.right);
 		}
 	}
-
 	
 	private void seach(int value) {
 		Queue<BNode> queue = new LinkedList<BNode>();
