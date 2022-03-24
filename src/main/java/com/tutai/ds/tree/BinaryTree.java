@@ -1,5 +1,6 @@
 package com.tutai.ds.tree;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -12,21 +13,25 @@ public class BinaryTree {
 
 	public BinaryTree() {
 		root = new BNode(1);
+		
+		for (int i = 2; i <= 11; i++) {
+			insert(i);
+		}
 
-		root.left = new BNode(2);
-		root.right = new BNode(3);
-
-		root.left.left = new BNode(4);
-		root.left.right = new BNode(5);
-
-		root.right.left = new BNode(6);
-		root.right.right = new BNode(7);
-
-		root.left.left.left = new BNode(8);
-		root.left.left.right = new BNode(9);
-
-		root.left.right.left = new BNode(10);
-		root.left.right.right = new BNode(11);
+//		root.left = new BNode(2);
+//		root.right = new BNode(3);
+//
+//		root.left.left = new BNode(4);
+//		root.left.right = new BNode(5);
+//
+//		root.right.left = new BNode(6);
+//		root.right.right = new BNode(7);
+//
+//		root.left.left.left = new BNode(8);
+//		root.left.left.right = new BNode(9);
+//
+//		root.left.right.left = new BNode(10);
+//		root.left.right.right = new BNode(11);
 
 		root.printNode(0);
 
@@ -38,6 +43,9 @@ public class BinaryTree {
 		postOrder(root);
 		System.out.println("\nLevel-Order: ");
 		levelOrder(root);
+		System.out.println("\n");
+		seach(10);
+		seach(99);
 
 	}
 
@@ -81,6 +89,45 @@ public class BinaryTree {
 		}
 	}
 
+	
+	private void seach(int value) {
+		Queue<BNode> queue = new LinkedList<BNode>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			BNode currentNode = queue.remove();
+			if (currentNode.value == value) { 
+				System.out.println("Value is Found : " + value);
+				return;
+			}
+			if (currentNode.left != null)
+				queue.add(currentNode.left);
+			if (currentNode.right != null)
+				queue.add(currentNode.right);
+		}
+		System.out.println("Value not Found : " + value);
+	}
+	
+	private void insert(int value) {
+		Queue<BNode> queue = new LinkedList<BNode>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			BNode currentNode = queue.remove();
+			if (currentNode.left == null) {
+				currentNode.left = new BNode(value);
+				return;
+			}
+			else if (currentNode.right == null) {
+				currentNode.right = new BNode(value);
+				return;
+			}
+			else {
+				queue.add(currentNode.left);
+				queue.add(currentNode.right);
+			}
+		}
+		System.out.println("Value not Found : " + value);
+	}
+	
 	public static void main(String[] args) {
 		new BinaryTree();
 	}
