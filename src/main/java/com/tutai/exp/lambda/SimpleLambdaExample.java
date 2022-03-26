@@ -1,5 +1,8 @@
 package com.tutai.exp.lambda;
 
+/**
+ * @author tkd
+ */
 public class SimpleLambdaExample {
 
 	@FunctionalInterface
@@ -10,6 +13,10 @@ public class SimpleLambdaExample {
 	@FunctionalInterface
 	interface Math {
 		int perform(int a, int b);
+	}
+
+	private static void printLambda(MyPrinter printer) {
+		printer.print("Hello from printLambda");
 	}
 
 	public static void main(String[] args) {
@@ -27,6 +34,8 @@ public class SimpleLambdaExample {
 				return a / b;
 			}
 		};
+
+		printLambda(s -> System.out.println(s));
 
 		System.out.println(divide.perform(10, 2));
 		System.out.println(divide.perform(10, 0));

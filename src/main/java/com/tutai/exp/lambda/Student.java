@@ -1,5 +1,7 @@
 package com.tutai.exp.lambda;
-
+/**
+ * @author tkd
+ */
 public class Student {
 
 	int roll;

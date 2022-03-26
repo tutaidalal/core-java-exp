@@ -1,8 +1,11 @@
 package com.tutai.exp.lambda;
-
+/**
+ */
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * @author tkd
+ */
 public class ForEachExample {
 
 	public static void main(String[] args) {
