@@ -1,0 +1,18 @@
+Non-Terminal Operations
+
+    filter()
+    map()
+    distinct()
+    sorted()
+    peek()
+
+Terminal Operations
+
+    anyMatch()
+    collect()
+    count()
+    findFirst()
+    min()
+    max()
+    sum()
+    average()
