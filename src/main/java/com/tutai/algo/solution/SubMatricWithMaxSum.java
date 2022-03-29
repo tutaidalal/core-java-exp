@@ -48,7 +48,10 @@ public class SubMatricWithMaxSum {
 
 	// Driver Code
 	public static void main(String[] args) {
-		int[][] matrix = { { 0, -2, -7, 0 }, { 9, 2, -6, 2 }, { -4, 1, -4, 1 }, { -1, 8, 0, -2 } };
+		int[][] matrix = { { 0, -2, -7, 0 },
+				           { 9, 2, -6, 2 },
+				           { -4, 1, -4, 1 },
+				           { -1, 8, 0, -2 } };
 		maxSubmatrixSum(matrix);
 	}
 }

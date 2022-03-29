@@ -1,3 +1,5 @@
+package com.tutai.exp.stream;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -6,6 +8,8 @@ import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import com.tutai.exp.lambda.Student;
 
 public class StreamAPIs {
 
