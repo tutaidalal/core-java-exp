@@ -10,11 +10,12 @@ public class AllSubSet {
 		findAllSubList(Arrays.asList(1, 2, 3));
 	}
 
-	private static void findAllSubList(List<Integer> list) {
-		int totalSubSet = (int) Math.pow(list.size(), 2);
+	private static ArrayList<ArrayList<Integer>> findAllSubList(List<Integer> A) {
+		int totalSubSet = (int) Math.pow(A.size(), 2);
+		ArrayList<ArrayList<Integer>> allSubSet = new ArrayList<ArrayList<Integer>>();
 		for (int bitMaskValue = 0; bitMaskValue < totalSubSet; bitMaskValue++) {
-			List<Integer> sublist = new ArrayList<Integer>();
-			for (int elementIndex = 0; elementIndex < list.size(); elementIndex++) {
+			ArrayList<Integer> sublist = new ArrayList<Integer>();
+			for (int elementIndex = 0; elementIndex < A.size(); elementIndex++) {
 				// 00000001 & 00000001
 				// 00000001 & 00000010
 
@@ -23,13 +24,14 @@ public class AllSubSet {
 				// 00000011 && 00000100
 
 				if ((bitMaskValue & (1 << elementIndex)) != 0) {
-					sublist.add(list.get(elementIndex));
+					sublist.add(A.get(elementIndex));
 				}
 
 			}
 			if (sublist.isEmpty())
 				continue;
-			System.out.println(sublist);
+			allSubSet.add(sublist);
 		}
+		return allSubSet;
 	}
 }

@@ -25,6 +25,12 @@ public class StreamAPIs {
 
 		/* Simple List Iteration and print */
 		numberList.stream().forEach(System.out::print);
+		
+		
+		System.out.println("-Parallel Stream-");
+		numberList.parallelStream().forEach(System.out::println);
+		System.out.println("-Parallel Stream-");
+		
 
 		/* List to Map With Function Identity */
 		Map<Integer, Student> studentMap = studentList.stream()

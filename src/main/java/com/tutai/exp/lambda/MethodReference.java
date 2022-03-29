@@ -27,5 +27,15 @@ public class MethodReference {
 				.collect(Collectors.toMap(Student::getRoll, Function.identity()));
 		System.out.println(map1);
 
+		Thread th = new Thread(MethodReference::printMessage);
+		th.start();
+		
+		
+		
+
+	}
+
+	public static void printMessage() {
+		System.out.println("Hello");
 	}
 }

@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class ShortingUsingLambda {
 
@@ -23,35 +25,36 @@ public class ShortingUsingLambda {
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
-		
+
 		System.out.println("After Shorting");
 		System.out.println(personList);
-		
+
 		Comparator<Person> comparator = (o1, o2) -> o1.getAddress().compareTo(o2.getAddress());
-		
+
 		Collections.sort(personList, (o1, o2) -> o1.getAddress().compareTo(o2.getAddress()));
 		System.out.println("After Shorting");
 		System.out.println(personList);
-		
-		printSome(personList, p -> p.getAddress().endsWith("1"));
-	
-		
+
+//		printSome(personList, p -> p.getAddress().endsWith("1"));
+
 		System.out.println("Print all with a default condiion true");
-		printSome(personList, p -> true);
-		
+		performWithFilter(personList, p -> p.getAddress().endsWith("1"), System.out::println);
+
 	}
-	
-	interface Condition{
+
+	interface Condition {
 		boolean match(Person p);
 	}
-	
-	private static void printSome(List<Person> personList, Condition c) {
+
+	// Use of consumer
+	private static void performWithFilter(List<Person> personList, Predicate<Person> predicate,
+			Consumer<Person> consumer) {
 		for (Iterator iterator = personList.iterator(); iterator.hasNext();) {
 			Person person = (Person) iterator.next();
-			if (c.match(person)) {
-				System.out.println("Filtered Person:" + person);
+			if (predicate.test(person)) {
+				consumer.accept(person);
 			}
-			
+
 		}
 	}
 
