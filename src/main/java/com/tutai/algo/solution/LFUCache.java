@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
-
+/**
+ * @author tkd
+ */
 public class LFUCache {
 
 	private class DNode {
@@ -27,6 +29,8 @@ public class LFUCache {
 	}
 
 	private Map<Integer, DNode> valueCache = new HashMap<Integer, DNode>();
+	
+	/*using Java inked List considering that the delete will be in O(1) for a double linked list*/
 	private Map<Integer, LinkedList<DNode>> frequencyMap = new HashMap<Integer, LinkedList<DNode>>();
 	private int CAPACITY = 4;
 	private int minFrequency = 1;
