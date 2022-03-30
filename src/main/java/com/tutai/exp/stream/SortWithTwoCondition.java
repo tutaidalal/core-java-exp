@@ -37,7 +37,6 @@ public class SortWithTwoCondition {
 		studentList = studentList.stream()
 				.sorted(Comparator.comparing(Student::getMarks).thenComparing(Student::getName))
 				.collect(Collectors.toList());
-		;
 		System.out.println(studentList);
 
 	}

@@ -30,6 +30,7 @@ public class StreamAPIs2 {
 		System.out.println(count);
 		
 		
+		
 	}
 
 	public static void main(String[] args) {
