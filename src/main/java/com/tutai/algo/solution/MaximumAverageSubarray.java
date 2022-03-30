@@ -15,10 +15,14 @@ public class MaximumAverageSubarray {
 		int avg = Integer.MIN_VALUE;
 		int startingIndex = -1;
 		for (int i = 0; i < n - k + 1; i++) {
-			int tempAvg = 0;
-			for (int j = i; j < i + k; j++) {
-				tempAvg += arr[j];
+			int tempAvg = arr[i];
+			int count = 2;
+			for (int j = i+1; j < i + k; j++) {
+				int newMember = arr[j];
+				tempAvg = tempAvg + ((newMember - tempAvg)/count);
+				count++;
 			}
+			System.out.println(tempAvg);
 			tempAvg = tempAvg / k;
 			if (tempAvg > avg) {
 				avg = tempAvg;
