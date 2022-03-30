@@ -34,26 +34,21 @@ public class DetectAndRemoveLoop {
 
 	// Function to remove loop
 	void removeLoop(Node slow, Node head) {
-		 // Do for each node of the linked list
-        for (Node curr = head; curr != null; curr = curr.next)
-        {
-            // start a pointer `ptr` from the `slow` node and
-            // check if it meets the current node `curr`
-            Node ptr = slow;
-            while (ptr.next != slow && ptr.next != curr) {
-                ptr = ptr.next;
-            }
- 
-            // If `ptr` meets `curr`, then that means there is a loop, and `curr`
-            // points to the first node of the loop and `ptr` points to the last node
-            if (ptr.next == curr)
-            {
-                // set next pointer of `ptr` to `null` to break the chain
-                ptr.next = null;
-                return;
-            }
-        }
-		
+		System.out.println("\nSlow=" + slow.data);
+		for (Node curr = head; curr != null; curr = curr.next) {
+			Node probbableLast = slow;
+			while (probbableLast.next != slow && probbableLast.next != curr) {
+				System.out.println("ptr=" + probbableLast.data);
+				probbableLast = probbableLast.next;
+			}
+			System.out.println("Possible Last: " + probbableLast.data + ", Cur " + curr.data);
+
+			if (probbableLast.next == curr) {
+				probbableLast.next = null;
+				return;
+			}
+		}
+
 	}
 
 	// Function to print the linked list
@@ -83,7 +78,7 @@ public class DetectAndRemoveLoop {
 		list.printList(head);
 		head.next.next.next.next.next = head.next.next;
 		list.printList(head);
-		
+
 		list.detectAndRemoveLoop(head);
 		System.out.println("Linked List after removing loop : ");
 		list.printList(head);
