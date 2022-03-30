@@ -1,6 +1,6 @@
 package com.tutai.algo.solution;
 
-public class DetectAndRemoveLoop {
+public class LinkedListLoopAndBreak {
 	// Java program to detect and remove loop in linked list
 
 	static Node head;
@@ -67,7 +67,7 @@ public class DetectAndRemoveLoop {
 
 	// Driver program to test above functions
 	public static void main(String[] args) {
-		DetectAndRemoveLoop list = new DetectAndRemoveLoop();
+		LinkedListLoopAndBreak list = new LinkedListLoopAndBreak();
 		list.head = new Node(50);
 		list.head.next = new Node(20);
 		list.head.next.next = new Node(15);
