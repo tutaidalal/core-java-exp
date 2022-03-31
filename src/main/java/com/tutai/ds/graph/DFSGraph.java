@@ -1,15 +1,16 @@
-package graph;
+package com.tutai.ds.graph;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
- * @author tutai
+ * @author tkd
+ *
  */
-public class SimpleGraphAdjucentList {
-
+public class DFSGraph {
 	ArrayList<GNode> nodeList = new ArrayList<GNode>();
 
-	public SimpleGraphAdjucentList(ArrayList<GNode> nodeList) {
+	public DFSGraph(ArrayList<GNode> nodeList) {
 		this.nodeList = nodeList;
 	}
 
@@ -18,14 +19,34 @@ public class SimpleGraphAdjucentList {
 		GNode endNode = nodeList.get(j);
 		startNode.neighbours.add(endNode);
 		endNode.neighbours.add(startNode);
-
-//		System.out.println("Start: " + startNode + ", End: " + endNode );
-//		printGraph();
 	}
 
 	public void printGraph() {
 		for (GNode node : nodeList) {
 			System.out.println(node + "->" + node.neighbours);
+		}
+	}
+
+	public void clearVisit() {
+		for (GNode node : nodeList) {
+			node.visited = false;
+		}
+	}
+
+	public void doDFS() {
+		Stack<GNode> stack = new Stack<GNode>();
+		stack.add(nodeList.get(0));
+		while (!stack.isEmpty()) {
+			GNode poppedElement = stack.pop();
+			System.out.println("DFS-" + poppedElement);
+			poppedElement.visited = true;
+
+			for (GNode neighbour : poppedElement.neighbours) {
+				if (!neighbour.visited) {
+					stack.add(neighbour);
+					neighbour.visited = true;
+				}
+			}
 		}
 	}
 
@@ -36,7 +57,7 @@ public class SimpleGraphAdjucentList {
 		nodeList.add(new GNode("C", 2));
 		nodeList.add(new GNode("D", 3));
 		nodeList.add(new GNode("E", 4));
-		SimpleGraphAdjucentList graph = new SimpleGraphAdjucentList(nodeList);
+		DFSGraph graph = new DFSGraph(nodeList);
 
 		graph.addUndirectedEdge(0, 1);
 		graph.addUndirectedEdge(0, 2);
@@ -45,6 +66,8 @@ public class SimpleGraphAdjucentList {
 		graph.addUndirectedEdge(2, 3);
 		graph.addUndirectedEdge(3, 4);
 		graph.printGraph();
+
+		graph.doDFS();
 	}
 
 }

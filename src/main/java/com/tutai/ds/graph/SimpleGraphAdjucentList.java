@@ -1,30 +1,31 @@
-package graph;
+package com.tutai.ds.graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 /**
  * @author tutai
- *
  */
-public class SimpleGraphAdjucentMatrix {
+public class SimpleGraphAdjucentList {
 
-	List<GNode> nodeList = new ArrayList<GNode>();
-	int[][] adjucentMatrix;
+	ArrayList<GNode> nodeList = new ArrayList<GNode>();
 
-	public SimpleGraphAdjucentMatrix(ArrayList<GNode> nodeList) {
+	public SimpleGraphAdjucentList(ArrayList<GNode> nodeList) {
 		this.nodeList = nodeList;
-		adjucentMatrix = new int[nodeList.size()][nodeList.size()];
 	}
 
 	public void addUndirectedEdge(int i, int j) {
-		adjucentMatrix[i][j] = 1;
-		adjucentMatrix[j][i] = 1;
+		GNode startNode = nodeList.get(i);
+		GNode endNode = nodeList.get(j);
+		startNode.neighbours.add(endNode);
+		endNode.neighbours.add(startNode);
+
+//		System.out.println("Start: " + startNode + ", End: " + endNode );
+//		printGraph();
 	}
 
 	public void printGraph() {
-		for (int i = 0; i < adjucentMatrix.length; i++) {
-			System.out.println(Arrays.toString(adjucentMatrix[i]));
+		for (GNode node : nodeList) {
+			System.out.println(node + "->" + node.neighbours);
 		}
 	}
 
@@ -35,7 +36,7 @@ public class SimpleGraphAdjucentMatrix {
 		nodeList.add(new GNode("C", 2));
 		nodeList.add(new GNode("D", 3));
 		nodeList.add(new GNode("E", 4));
-		SimpleGraphAdjucentMatrix graph = new SimpleGraphAdjucentMatrix(nodeList);
+		SimpleGraphAdjucentList graph = new SimpleGraphAdjucentList(nodeList);
 
 		graph.addUndirectedEdge(0, 1);
 		graph.addUndirectedEdge(0, 2);

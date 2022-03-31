@@ -1,4 +1,4 @@
-package sort;
+package com.tutai.algo.sort;
 
 import java.util.Arrays;
 

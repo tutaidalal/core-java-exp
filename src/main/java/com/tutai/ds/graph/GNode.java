@@ -1,4 +1,4 @@
-package graph;
+package com.tutai.ds.graph;
 
 import java.util.LinkedList;
 

@@ -1,16 +1,17 @@
-package graph;
+package com.tutai.ds.graph;
 
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author tkd
  *
  */
-public class DFSGraph {
+public class BFSGraph {
 	ArrayList<GNode> nodeList = new ArrayList<GNode>();
 
-	public DFSGraph(ArrayList<GNode> nodeList) {
+	public BFSGraph(ArrayList<GNode> nodeList) {
 		this.nodeList = nodeList;
 	}
 
@@ -33,17 +34,18 @@ public class DFSGraph {
 		}
 	}
 
-	public void doDFS() {
-		Stack<GNode> stack = new Stack<GNode>();
-		stack.add(nodeList.get(0));
-		while (!stack.isEmpty()) {
-			GNode poppedElement = stack.pop();
-			System.out.println("DFS-" + poppedElement);
+	public void doBFS() {
+		Queue<GNode> queue = new LinkedList<GNode>();
+		queue.add(nodeList.get(3));
+
+		while (!queue.isEmpty()) {
+			GNode poppedElement = queue.poll();
 			poppedElement.visited = true;
+			System.out.println("BFS-" + poppedElement);
 
 			for (GNode neighbour : poppedElement.neighbours) {
 				if (!neighbour.visited) {
-					stack.add(neighbour);
+					queue.add(neighbour);
 					neighbour.visited = true;
 				}
 			}
@@ -57,7 +59,7 @@ public class DFSGraph {
 		nodeList.add(new GNode("C", 2));
 		nodeList.add(new GNode("D", 3));
 		nodeList.add(new GNode("E", 4));
-		DFSGraph graph = new DFSGraph(nodeList);
+		BFSGraph graph = new BFSGraph(nodeList);
 
 		graph.addUndirectedEdge(0, 1);
 		graph.addUndirectedEdge(0, 2);
@@ -67,7 +69,9 @@ public class DFSGraph {
 		graph.addUndirectedEdge(3, 4);
 		graph.printGraph();
 
-		graph.doDFS();
+		graph.doBFS();
+//		graph.clearVisit();
+//		graph.doBFS();
 	}
 
 }
