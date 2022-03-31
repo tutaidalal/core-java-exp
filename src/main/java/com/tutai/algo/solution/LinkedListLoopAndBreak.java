@@ -3,7 +3,7 @@ package com.tutai.algo.solution;
 public class LinkedListLoopAndBreak {
 	// Java program to detect and remove loop in linked list
 
-	static Node head;
+	Node head;
 
 	static class Node {
 
@@ -75,13 +75,13 @@ public class LinkedListLoopAndBreak {
 		list.head.next.next.next.next = new Node(10);
 
 		// Creating a loop for testing
-		list.printList(head);
-		head.next.next.next.next.next = head.next.next;
-		list.printList(head);
+		list.printList(list.head);
+		list.head.next.next.next.next.next = list.head.next.next;
+		list.printList(list.head);
 
-		list.detectAndRemoveLoop(head);
+		list.detectAndRemoveLoop(list.head);
 		System.out.println("Linked List after removing loop : ");
-		list.printList(head);
+		list.printList(list.head);
 	}
 
 	// This code has been contributed by Mayank Jaiswal
