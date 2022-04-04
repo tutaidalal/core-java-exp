@@ -1,7 +1,9 @@
-package sort;
+package com.tutai.algo.sort;
 
 import java.util.Arrays;
-
+/**
+ * @author tkd
+ */
 public class QuickSort {
 
 	static void swap(int[] arr, int i, int j) {

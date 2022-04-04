@@ -1,4 +1,4 @@
-package bitmagic;
+package com.tutai.bitmagic;
 
 public class CountSetBit {
 	public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class CountSetBit {
 		}
 		System.out.println(count);
 		
-		//Kernighan’s algorithm
+		//Kernighanï¿½s algorithm
 		number = 12;
 		count = 0;
         while (number != 0)

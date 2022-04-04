@@ -8,6 +8,7 @@ public class GNode {
 	int index;
 	boolean visited;
 	LinkedList<GNode> neighbours = new LinkedList<GNode>();
+	GNode parent;
 
 	public GNode(String name, int index) {
 		super();

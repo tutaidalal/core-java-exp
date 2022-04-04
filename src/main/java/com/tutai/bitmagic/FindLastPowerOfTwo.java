@@ -1,4 +1,4 @@
-package bitmagic;
+package com.tutai.bitmagic;
 
 public class FindLastPowerOfTwo {
 	public static void main(String[] args) {

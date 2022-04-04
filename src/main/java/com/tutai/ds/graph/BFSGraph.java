@@ -41,14 +41,40 @@ public class BFSGraph {
 		while (!queue.isEmpty()) {
 			GNode poppedElement = queue.poll();
 			poppedElement.visited = true;
-			System.out.println("BFS-" + poppedElement);
-
+			System.out.print("\nPath for Node [" + poppedElement.name + "] ");
+			printPath(poppedElement);
 			for (GNode neighbour : poppedElement.neighbours) {
 				if (!neighbour.visited) {
 					queue.add(neighbour);
 					neighbour.visited = true;
+					neighbour.parent = poppedElement;
 				}
 			}
+		}
+	}
+
+	public void doBFS(GNode node) {
+		Queue<GNode> queue = new LinkedList<GNode>();
+		queue.add(node);
+		while (!queue.isEmpty()) {
+			GNode poppedElement = queue.poll();
+			poppedElement.visited = true;
+			System.out.print("\nPath for Node [" + poppedElement.name + "] ");
+			printPath(poppedElement);
+			for (GNode neighbour : poppedElement.neighbours) {
+				if (!neighbour.visited) {
+					queue.add(neighbour);
+					neighbour.visited = true;
+					neighbour.parent = poppedElement;
+				}
+			}
+		}
+	}
+
+	private void printPath(GNode currentNode) {
+		if (currentNode.parent != null) {
+			printPath(currentNode.parent);
+			System.out.print(currentNode.name + " ");
 		}
 	}
 
@@ -59,17 +85,28 @@ public class BFSGraph {
 		nodeList.add(new GNode("C", 2));
 		nodeList.add(new GNode("D", 3));
 		nodeList.add(new GNode("E", 4));
+
+		nodeList.add(new GNode("F", 5));
+		nodeList.add(new GNode("G", 6));
 		BFSGraph graph = new BFSGraph(nodeList);
 
 		graph.addUndirectedEdge(0, 1);
 		graph.addUndirectedEdge(0, 2);
-		graph.addUndirectedEdge(0, 3);
-		graph.addUndirectedEdge(1, 4);
+
+		graph.addUndirectedEdge(1, 6);
+		graph.addUndirectedEdge(1, 3);
+
 		graph.addUndirectedEdge(2, 3);
-		graph.addUndirectedEdge(3, 4);
+		graph.addUndirectedEdge(2, 4);
+
+		graph.addUndirectedEdge(3, 5);
+		graph.addUndirectedEdge(4, 5);
+
+		graph.addUndirectedEdge(5, 6);
+
 		graph.printGraph();
 
-		graph.doBFS();
+		graph.doBFS(nodeList.get(0));
 //		graph.clearVisit();
 //		graph.doBFS();
 	}

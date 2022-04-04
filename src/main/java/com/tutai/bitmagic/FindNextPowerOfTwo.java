@@ -1,4 +1,4 @@
-package bitmagic;
+package com.tutai.bitmagic;
 
 public class FindNextPowerOfTwo {
 	public static void main(String[] args) {
