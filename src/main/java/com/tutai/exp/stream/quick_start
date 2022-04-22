@@ -1,18 +1,25 @@
 Non-Terminal Operations
 
-    filter()
-    map()
+    filter(Predicate<T>)
+    map(Function<T>)
+    flatmap(Function<T>)
+    sorted(Comparator<T>)
+    peek(Consumer<T>)
     distinct()
-    sorted()
-    peek()
+    limit(long n)
+    skip(long n)
 
 Terminal Operations
-
-    anyMatch()
-    collect()
-    count()
-    findFirst()
-    min()
-    max()
-    sum()
-    average()
+    forEach
+    forEachOrdered
+    toArray
+    reduce
+    collect
+    min
+    max
+    count
+    anyMatch
+    allMatch
+    noneMatch
+    findFirst    
+    findAny
