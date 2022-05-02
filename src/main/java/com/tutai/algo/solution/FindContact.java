@@ -1,119 +1,80 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+package com.tutai.algo.solution;
 
-class Result {
-    
-    static class DictionaryNode {
-    DictionaryNode[] children = new DictionaryNode[26];
-    public int size = 0;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-    public void putChildIfAbsent(char ch) {
-        if (children[ch-'a'] == null) {
-           children[ch-'a'] = new DictionaryNode(); 
-        }
-    }
 
-    public DictionaryNode getChild(char ch) {
-        return children[ch-'a'];
-    }
-}
+public class FindContact {
+	
+	static class DictionaryNode {
+		DictionaryNode[] children = new DictionaryNode[26];
+		public int size = 0;
 
-static class Dictionary {
-    DictionaryNode root = new DictionaryNode();
-    
-    public void add(String str) {
-        DictionaryNode curr = root;
-        for (char ch : str.toCharArray()) {
-            curr.putChildIfAbsent(ch);
-            curr = curr.getChild(ch);
-            curr.size++;
-        }
-    }
-    
-    public int find(String prefix) {
-        DictionaryNode curr = root;
-        
-        for (char ch : prefix.toCharArray()) {
-            curr = curr.getChild(ch);
-            if (curr == null) {
-                return 0;
-            }
-        }
-        return curr.size;
-    }
-}
+		public void putChildIfAbsent(char ch) {
+			if (children[ch - 'a'] == null) {
+				children[ch - 'a'] = new DictionaryNode();
+			}
+		}
 
-    /*
-     * Complete the 'contacts' function below.
-     *
-     * The function is expected to return an INTEGER_ARRAY.
-     * The function accepts 2D_STRING_ARRAY queries as parameter.
-     */
+		public DictionaryNode getChild(char ch) {
+			return children[ch - 'a'];
+		}
+	}
+	
+	static class Dictionary {
+		DictionaryNode root = new DictionaryNode();
 
-    public static List<Integer> contacts(List<List<String>> queries) {
-    // Write your code here
-        List<Integer> result = new LinkedList<Integer>();
- 
+		public void add(String str) {
+			DictionaryNode curr = root;
+			for (char ch : str.toCharArray()) {
+				curr.putChildIfAbsent(ch);
+				curr = curr.getChild(ch);
+				curr.size++;
+			}
+		}
 
-        Dictionary tire = new Dictionary();
-        
-        
-        for (List<String> query : queries) {
-            String nameValue = query.get(1);
-            if (query.get(0).equals("add")) {
-                tire.add(nameValue);
-            } else {
-                                
-                int count = tire.find(nameValue);
-                result.add(count); 
-               
-            }
-        }
-        return result;
+		public int find(String prefix) {
+			DictionaryNode curr = root;
 
-    }
+			for (char ch : prefix.toCharArray()) {
+				curr = curr.getChild(ch);
+				if (curr == null) {
+					return 0;
+				}
+			}
+			return curr.size;
+		}
+	}
+	
+	public static List<Integer> contacts(List<List<String>> queries) {
+		// Write your code here
+		List<Integer> result = new LinkedList<Integer>();
 
-}
+		Dictionary tire = new Dictionary();
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+		for (List<String> query : queries) {
+			String nameValue = query.get(1);
+			if (query.get(0).equals("add")) {
+				tire.add(nameValue);
+			} else {
 
-        int queriesRows = Integer.parseInt(bufferedReader.readLine().trim());
+				int count = tire.find(nameValue);
+				result.add(count);
 
-        List<List<String>> queries = new ArrayList<>();
+			}
+		}
+		return result;
 
-        IntStream.range(0, queriesRows).forEach(i -> {
-            try {
-                queries.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        List<Integer> result = Result.contacts(queries);
-
-        bufferedWriter.write(
-            result.stream()
-                .map(Object::toString)
-                .collect(joining("\n"))
-            + "\n"
-        );
-
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
+	}
+	
+	public static void main(String[] args) throws IOException {
+		List<List<String>> queries = new ArrayList<List<String>>();
+		queries.add(Arrays.asList("add", "tutai"));
+		queries.add(Arrays.asList("get", "tut"));
+		List<Integer> result = FindContact.contacts(queries);
+		System.out.println(result);
+	}
 }

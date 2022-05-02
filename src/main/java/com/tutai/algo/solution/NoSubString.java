@@ -1,3 +1,5 @@
+package com.tutai.algo.solution;
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -54,7 +56,7 @@ class Result {
 
 }
 
-public class Solution {
+public class NoSubString {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 

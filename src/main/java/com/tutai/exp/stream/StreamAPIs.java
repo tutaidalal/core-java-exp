@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class StreamAPIs {
 
 	public StreamAPIs() {
 
-		List<Integer> numberList = IntStream.range(1, 11).boxed().collect(Collectors.toList());
+		List<Integer> numberList = IntStream.range(1, 5).boxed().collect(Collectors.toList());
 		List<Student> studentList = Arrays.asList(new Student(1, 10, "Tutai"), new Student(2, 20, "Arpan"),
 				new Student(3, 40, "Kriti"), new Student(4, 40, "NandRoy"), new Student(40, 20, "NandRoy"),
 				new Student(5, 50, "Arijit"));
@@ -23,6 +24,22 @@ public class StreamAPIs {
 		System.out.println(numberList + ", Type - " + numberList.getClass());
 		System.out.println(studentList + ", Type - " + studentList.getClass());
 
+		
+		int reduceValue = numberList.stream().reduce(0, (absoluteSum, currentValue) -> {
+															    System.out.println("absoluteSum=" + absoluteSum);
+															    System.out.println("currentValue=" + currentValue);
+																return (absoluteSum + currentValue);});
+		
+		System.out.println("Reduce-Value" + reduceValue);
+		
+		Optional<Integer> reduceValue1 = numberList.stream().reduce((a, b) -> a+b);
+
+		System.out.println("Reduce-Value" + reduceValue1);
+
+
+		
+		
+		
 		/* Simple List Iteration and print */
 		numberList.stream().forEach(System.out::print);
 		
