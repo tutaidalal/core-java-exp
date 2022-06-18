@@ -31,7 +31,8 @@ public class EqualArray {
 			arr[0] = arr[maxIndex];
 			arr[maxIndex] = tmp;
 		}
-
+        
+		int loopCount = 1;
 		while (!isEqual(arr)) {
 			System.out.println(Arrays.toString(arr));
 			for (int i = 1; i < arr.length; i++) {
@@ -42,7 +43,8 @@ public class EqualArray {
 					arr[i] = tmp;
 				}
 			}
+			loopCount++;
 		}
-		System.err.println(Arrays.toString(arr));
+		System.err.println(Arrays.toString(arr) + ", LoopCount= " + loopCount);
 	}
 }
