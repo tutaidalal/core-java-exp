@@ -10,7 +10,6 @@ public class EqualArray {
 	}
 
 	private static boolean isEqual(int[] arr) {
-		//TODO - can be checked from adjucent also
 		int result = 0;
 		for (int i = 0; i < arr.length; i++) {
 			result = result ^ arr[i];
@@ -19,18 +18,8 @@ public class EqualArray {
 	}
 
 	private static void process(int[] arr) {
-		System.out.println(Arrays.toString(arr));
-		while(!isEqual(arr)) {
-			arr = EqualArray.arrange(arr);
-			System.out.println(Arrays.toString(arr));
-			for (int i = 1; i < arr.length; i++) {
-				arr[i] = arr[i]+1; 
-			}
-		}
-		System.err.println(Arrays.toString(arr));
-	}
-	
-	private static int[] arrange(int[] arr) {
+
+		// for first time, talking the max to zero position
 		int maxIndex = 0;
 		for (int i = 1; i < arr.length; i++) {
 			if (arr[i] > arr[maxIndex]) {
@@ -38,11 +27,22 @@ public class EqualArray {
 			}
 		}
 		if (maxIndex != 0) {
-			int tmp  = arr[0];
+			int tmp = arr[0];
 			arr[0] = arr[maxIndex];
 			arr[maxIndex] = tmp;
 		}
-		return arr;
-	}
 
+		while (!isEqual(arr)) {
+			System.out.println(Arrays.toString(arr));
+			for (int i = 1; i < arr.length; i++) {
+				arr[i] = arr[i] + 1;
+				if (arr[0] < arr[i]) {
+					int tmp = arr[0];
+					arr[0] = arr[i];
+					arr[i] = tmp;
+				}
+			}
+		}
+		System.err.println(Arrays.toString(arr));
+	}
 }
