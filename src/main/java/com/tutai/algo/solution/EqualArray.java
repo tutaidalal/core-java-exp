@@ -5,16 +5,23 @@ import java.util.Arrays;
 public class EqualArray {
 
 	public static void main(String[] args) {
-		int[] arr = { 1, 8, 9, 10, 11, 80, -100, 74 };
+		int[] arr = {1, 1, 2, 2};
 		EqualArray.process(arr);
 	}
 
+//	private static boolean isEqual(int[] arr) {
+//		int result = 0;
+//		for (int i = 0; i < arr.length; i++) {
+//			result = result ^ arr[i];
+//		}
+//		return result == 0;
+//	}
+	
 	private static boolean isEqual(int[] arr) {
-		int result = 0;
 		for (int i = 0; i < arr.length; i++) {
-			result = result ^ arr[i];
+			if (arr[i] != arr[0]) return false;
 		}
-		return result == 0;
+		return true;
 	}
 
 	private static void process(int[] arr) {
