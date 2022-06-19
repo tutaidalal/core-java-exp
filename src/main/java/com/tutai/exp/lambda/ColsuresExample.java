@@ -1,11 +1,15 @@
 package com.tutai.exp.lambda;
 
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * @author tkd
  */
 public class ColsuresExample {
 
 	public static void main(String[] args) {
+		
 		int a = 10;
 		int b = 20; // -->Effectively final in java 8
 
@@ -20,7 +24,6 @@ public class ColsuresExample {
 
 		// Clossure FROZEN the value
 		doProcess(a, (i) -> System.out.println(i + b * 2));
-
 	}
 
 	// How it is geting b.. b is an method variable

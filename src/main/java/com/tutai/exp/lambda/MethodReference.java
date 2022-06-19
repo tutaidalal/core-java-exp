@@ -30,9 +30,6 @@ public class MethodReference {
 		Thread th = new Thread(MethodReference::printMessage);
 		th.start();
 		
-		
-		
-
 	}
 
 	public static void printMessage() {

@@ -17,6 +17,7 @@ public class StreamAPIs {
 	public StreamAPIs() {
 
 		List<Integer> numberList = IntStream.range(1, 5).boxed().collect(Collectors.toList());
+		
 		List<Student> studentList = Arrays.asList(new Student(1, 10, "Tutai"), new Student(2, 20, "Arpan"),
 				new Student(3, 40, "Kriti"), new Student(4, 40, "NandRoy"), new Student(40, 20, "NandRoy"),
 				new Student(5, 50, "Arijit"));
@@ -29,6 +30,12 @@ public class StreamAPIs {
 															    System.out.println("absoluteSum=" + absoluteSum);
 															    System.out.println("currentValue=" + currentValue);
 																return (absoluteSum + currentValue);});
+		
+		
+		Map<Integer, Student> map = studentList.stream()
+				.collect(Collectors.toMap(Student::getMarks, Function.identity(), (a, b) -> a));
+		System.out.println("---map----" + map);
+		
 		
 		System.out.println("Reduce-Value" + reduceValue);
 		
